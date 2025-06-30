@@ -1,0 +1,17 @@
+{
+  "name": "tailwind-starter",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "esbuild src/index.tsx --bundle --minify --sourcemap --outfile=dist/bundle.js --jsx=automatic --target=es2020 && tailwindcss -i src/index.css -o dist/bundle.css --minify && cp public/index.html dist/index.html",
+    "dev": "esbuild src/index.tsx --bundle --servedir=dist --outfile=dist/bundle.js --jsx=automatic --target=es2020"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.3",
+    "esbuild": "^0.21.4"
+  }
+}
