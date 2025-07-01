@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/index.css"],
+  "sourcesContent": ["@tailwind base;\r\n@tailwind components;\r\n@tailwind utilities;\r\n\r\n@media print {\r\n  body {\r\n    -webkit-print-color-adjust: exact;\r\n    print-color-adjust: exact;\r\n    background-color: #fff;\r\n  }\r\n  .hide-on-print {\r\n    display: none !important;\r\n  }\r\n  .print-container {\r\n    padding: 0 !important;\r\n    margin: 0 !important;\r\n    box-shadow: none !important;\r\n    max-width: none !important;\r\n  }\r\n  .print-page {\r\n    box-shadow: none !important;\r\n    margin: 0;\r\n    border: none;\r\n    padding: 1cm;\r\n    page-break-after: always;\r\n    width: 100%;\r\n  }\r\n  .bg-white {\r\n    background-color: #fff !important;\r\n  }\r\n}"],
+  "mappings": "AAAA,UAAU,KACV,UAAU,WACV,UAAU,UAEV,OAAO,MACL,KACE,2BAA4B,MAC5B,mBAAoB,MACpB,iBAAkB,IACpB,CACA,CAAC,cACC,QAAS,cACX,CACA,CAAC,gBAbH,QAca,YAdb,OAeY,YACR,WAAY,eACZ,UAAW,cACb,CACA,CAAC,WACC,WAAY,eApBhB,OAqBY,EACR,OAAQ,KAtBZ,QAuBa,IACT,iBAAkB,OAClB,MAAO,IACT,CACA,CAAC,SACC,iBAAkB,cACpB,CACF",
+  "names": []
+}

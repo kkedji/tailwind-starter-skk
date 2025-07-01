@@ -2,7 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Optionnel : style global perso */
-body {
-  font-family: 'Inter', sans-serif;
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background-color: #fff;
+  }
+  .hide-on-print {
+    display: none !important;
+  }
+  .print-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    max-width: none !important;
+  }
+  .print-page {
+    box-shadow: none !important;
+    margin: 0;
+    border: none;
+    padding: 1cm;
+    page-break-after: always;
+    width: 100%;
+  }
+  .bg-white {
+    background-color: #fff !important;
+  }
 }
