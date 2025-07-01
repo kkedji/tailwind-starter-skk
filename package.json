@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "esbuild src/index.tsx --bundle --minify --sourcemap --outfile=dist/bundle.js --jsx=automatic --target=es2020 && tailwindcss -i src/index.css -o dist/bundle.css --minify && cp public/index.html dist/index.html",
+    "build": "esbuild src/index.tsx --bundle --minify --sourcemap --outfile=dist/bundle.js --define:process.env.VITE_GEMINI_API_KEY='\"'${VITE_GEMINI_API_KEY}'\"' && tailwindcss -i src/index.css -o dist/bundle.css --minify && cp public/index.html dist/index.html",
     "dev": "esbuild src/index.tsx --bundle --servedir=dist --outfile=dist/bundle.js --jsx=automatic --target=es2020"
   },
   "dependencies": {
