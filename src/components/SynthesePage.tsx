@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { CreditApplicationData } from '../types.ts';
+import { generateSynthesis } from "../lib/gemini";
+import { useState } from "react";
 
 interface SynthesePageProps {
   formData: CreditApplicationData;
@@ -55,6 +57,23 @@ const SynthesePage: React.FC<SynthesePageProps> = ({ formData, setFormData, onNe
     const handlePrint = () => {
         window.print();
     };
+    const [syntheseGeneree, setSyntheseGeneree] = useState("");
+
+const handleGenerateSynthesis = async () => {
+  const prompt = `Rédige une synthèse claire et professionnelle à destination d’un analyste crédit.
+
+- Affaire : ${formData.affaire}
+- Dossier : ${formData.dossier}
+- Nom entreprise : ${formData.entreprise.nom}
+- Activité : ${formData.activiteMarche.description}
+- Historique bancaire : ${formData.historiqueBancaire.commentaires}
+- Ratios clés : ${JSON.stringify(formData.ratios)}
+
+Présente un avis neutre, structuré et synthétique.`;
+
+  const texte = await generateSynthesis(prompt);
+  setSyntheseGeneree(texte);
+};
 
     return (
         <div className="bg-white p-6 rounded-lg text-sm print-page">
@@ -115,18 +134,50 @@ const SynthesePage: React.FC<SynthesePageProps> = ({ formData, setFormData, onNe
                 </div>
             </div>
 
-            <div className="flex justify-between mt-6 hide-on-print">
-                <button type="button" onClick={handlePrint} className="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 transition duration-200">
-                    Imprimer / Exporter en PDF
-                </button>
-                {!isReadOnly && (
-                    <button type="button" onClick={onNext} className="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-200">
-                        Enregistrer et Suivant
-                    </button>
-                )}
             </div>
+
+        {/* 🔘 Bouton pour lancer la génération */}
+        {!isReadOnly && (
+          <div className="flex justify-end mb-4 hide-on-print">
+            <button
+              type="button"
+              onClick={handleGenerateSynthesis}
+              className="bg-green-600 text-white font-semibold px-4 py-2 rounded hover:bg-green-700 transition"
+            >
+              Générer la synthèse automatiquement
+            </button>
+          </div>
+        )}
+
+        {/* 🧾 Affichage de la synthèse générée */}
+        {!isReadOnly && syntheseGeneree && (
+          <div className="mt-4 p-4 bg-white border border-gray-300 rounded shadow">
+            <h3 className="text-md font-semibold mb-2">Synthèse générée automatiquement</h3>
+            <p className="whitespace-pre-line text-sm text-gray-700">{syntheseGeneree}</p>
+          </div>
+        )}
+
+        {/* 🎯 Boutons d’action finaux */}
+        <div className="flex justify-between mt-6 hide-on-print">
+          <button
+            type="button"
+            onClick={handlePrint}
+            className="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 transition duration-200"
+          >
+            Imprimer / Exporter en PDF
+          </button>
+          {!isReadOnly && (
+            <button
+              type="button"
+              onClick={onNext}
+              className="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-200"
+            >
+              Enregistrer et Suivant
+            </button>
+          )}
         </div>
+      </div>
     );
-};
+  };
 
 export default SynthesePage;
