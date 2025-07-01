@@ -128,56 +128,67 @@ Présente un avis neutre, structuré et synthétique.`;
                     <div className="bg-gray-200 p-2 font-semibold">Responsable Engagements</div>
                     <TextAreaField rows={1} name="responsableEngagements" value={formData.synthese.responsableEngagements} onChange={e => handleFieldChange('synthese.responsableEngagements', e.target.value)} readOnly={isReadOnly}/>
                 </div>
-                 <div className="border border-black">
-                    <div className="bg-gray-200 p-2 font-semibold">Comité</div>
-                    <TextAreaField rows={1} name="comite" value={formData.synthese.comite} onChange={e => handleFieldChange('synthese.comite', e.target.value)} readOnly={isReadOnly}/>
+                    <div className="border border-black">
+                  <div className="bg-gray-200 p-2 font-semibold">Comité</div>
+                  <TextAreaField
+                    rows={1}
+                    name="comite"
+                    value={formData.synthese.comite}
+                    onChange={(e) =>
+                      handleFieldChange("synthese.comite", e.target.value)
+                    }
+                    readOnly={isReadOnly}
+                  />
                 </div>
-            </div>
+              </div>
 
-            </div>
+              {/* 🔘 Bouton pour lancer la génération */}
+              {!isReadOnly && (
+                <div className="flex justify-end mb-4 hide-on-print">
+                  <button
+                    type="button"
+                    onClick={handleGenerateSynthesis}
+                    className="bg-green-600 text-white font-semibold px-4 py-2 rounded hover:bg-green-700 transition"
+                  >
+                    Générer la synthèse automatiquement
+                  </button>
+                </div>
+              )}
 
-        {/* 🔘 Bouton pour lancer la génération */}
-        {!isReadOnly && (
-          <div className="flex justify-end mb-4 hide-on-print">
-            <button
-              type="button"
-              onClick={handleGenerateSynthesis}
-              className="bg-green-600 text-white font-semibold px-4 py-2 rounded hover:bg-green-700 transition"
-            >
-              Générer la synthèse automatiquement
-            </button>
-          </div>
-        )}
+              {/* 🧾 Affichage de la synthèse générée */}
+              {!isReadOnly && syntheseGeneree && (
+                <div className="mt-4 p-4 bg-white border border-gray-300 rounded shadow">
+                  <h3 className="text-md font-semibold mb-2">
+                    Synthèse générée automatiquement
+                  </h3>
+                  <p className="whitespace-pre-line text-sm text-gray-700">
+                    {syntheseGeneree}
+                  </p>
+                </div>
+              )}
 
-        {/* 🧾 Affichage de la synthèse générée */}
-        {!isReadOnly && syntheseGeneree && (
-          <div className="mt-4 p-4 bg-white border border-gray-300 rounded shadow">
-            <h3 className="text-md font-semibold mb-2">Synthèse générée automatiquement</h3>
-            <p className="whitespace-pre-line text-sm text-gray-700">{syntheseGeneree}</p>
-          </div>
-        )}
-
-        {/* 🎯 Boutons d’action finaux */}
-        <div className="flex justify-between mt-6 hide-on-print">
-          <button
-            type="button"
-            onClick={handlePrint}
-            className="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 transition duration-200"
-          >
-            Imprimer / Exporter en PDF
-          </button>
-          {!isReadOnly && (
-            <button
-              type="button"
-              onClick={onNext}
-              className="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-200"
-            >
-              Enregistrer et Suivant
-            </button>
-          )}
-        </div>
-      </div>
-    );
-  };
+              {/* 🎯 Boutons d’action finaux */}
+              <div className="flex justify-between mt-6 hide-on-print">
+                <button
+                  type="button"
+                  onClick={handlePrint}
+                  className="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 transition duration-200"
+                >
+                  Imprimer / Exporter en PDF
+                </button>
+                {!isReadOnly && (
+                  <button
+                    type="button"
+                    onClick={onNext}
+                    className="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-200"
+                  >
+                    Enregistrer et Suivant
+                  </button>
+                )}
+              </div>
+            </div> {/* ✅ Fermeture propre du dernier div */}
+          </div> {/* ✅ Et celle-ci aussi */}
+        );
+      };
 
 export default SynthesePage;
