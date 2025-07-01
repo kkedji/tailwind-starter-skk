@@ -142,7 +142,6 @@ Présente un avis neutre, structuré et synthétique.`;
                 </div>
               </div>
 
-              {/* 🔘 Bouton pour lancer la génération */}
               {!isReadOnly && (
                 <div className="flex justify-end mb-4 hide-on-print">
                   <button
@@ -155,7 +154,6 @@ Présente un avis neutre, structuré et synthétique.`;
                 </div>
               )}
 
-              {/* 🧾 Affichage de la synthèse générée */}
               {!isReadOnly && syntheseGeneree && (
                 <div className="mt-4 p-4 bg-white border border-gray-300 rounded shadow">
                   <h3 className="text-md font-semibold mb-2">
@@ -167,7 +165,6 @@ Présente un avis neutre, structuré et synthétique.`;
                 </div>
               )}
 
-              {/* 🎯 Boutons d’action finaux */}
               <div className="flex justify-between mt-6 hide-on-print">
                 <button
                   type="button"
@@ -186,8 +183,7 @@ Présente un avis neutre, structuré et synthétique.`;
                   </button>
                 )}
               </div>
-            </div> {/* ✅ Fermeture propre du dernier div */}
-          </div> {/* ✅ Et celle-ci aussi */}
+            </div>
         );
       };
 
